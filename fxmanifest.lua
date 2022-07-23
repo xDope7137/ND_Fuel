@@ -21,3 +21,8 @@ server_scripts {
 client_scripts {
     "source/client.lua"
 }
+
+exports {
+	'GetFuel',
+	'SetFuel'
+}
