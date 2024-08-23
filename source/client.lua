@@ -53,7 +53,7 @@ end
 -- Setting the fuel to the vehicle entity using decor.
 function SetFuel(vehicle, fuel)
 	if type(fuel) == "number" and fuel >= 0 and fuel <= 100 then
-		SetVehicleFuelLevel(vehicle, fuel)
+		SetVehicleFuelLevel(vehicle, fuel + 0.0)
 		DecorSetFloat(vehicle, FUEL_DECOR, GetVehicleFuelLevel(vehicle))
 	end
 end
@@ -259,7 +259,6 @@ CreateThread(function()
                     if fuel < 97 then
                         SetFuel(vehicleFueling, fuel + ((2.0 / classMultiplier) - math.random(0, 100) / 100))
                     else
-                        cost = 0
                         fuel = 100.0
                         SetFuel(vehicleFueling, fuel)
                         vehicleFueling = false
@@ -274,6 +273,7 @@ CreateThread(function()
                 if cost ~= 0 then
                     TriggerServerEvent("ND_Fuel:pay", cost)
                 end
+		cost = 0
             end
         end
     end
